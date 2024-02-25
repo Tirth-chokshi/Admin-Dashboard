@@ -6,7 +6,6 @@ import { connectToDB } from "./utils";
 import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";
 import { signIn } from "../auth";
-import { Asul } from "next/font/google";
 
 export const addUser = async (formData) => {
   const { username, email, password, phone, address,img, isAdmin, isActive } =
