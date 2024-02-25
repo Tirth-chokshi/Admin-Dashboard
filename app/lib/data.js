@@ -8,11 +8,11 @@ export const fetchUsers = async (q, page) => {
 
   try {
     connectToDB();
-    const count = await User.find({ username: { $regex: regex } }).count();
+    const countUser = await User.find({ username: { $regex: regex } }).count();
     const users = await User.find({ username: { $regex: regex } })
       .limit(ITEM_PER_PAGE)
       .skip(ITEM_PER_PAGE * (page - 1));
-    return { count, users };
+    return { countUser, users };
   } catch (err) {
     console.log(err);
     throw new Error("Failed to fetch users!");
@@ -92,11 +92,11 @@ export const fetchbookings = async (q, page) => {
 
   try {
     connectToDB();
-    const count = await Booking.find({ partyFullName: { $regex: regex } }).count();
+    const countBooking = await Booking.find({ partyFullName: { $regex: regex } }).count();
     const bookings = await Booking.find({ partyFullName: { $regex: regex } })
       .limit(ITEM_PER_PAGE)
       .skip(ITEM_PER_PAGE * (page - 1));
-    return { count, bookings };
+    return { countBooking, bookings };
   } catch (err) {
     console.log(err);
     throw new Error("Failed to fetch bookings!");

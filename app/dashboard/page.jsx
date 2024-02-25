@@ -9,9 +9,7 @@ const Dashboard = () => {
     <div className={styles.wrapper}>
       <div className={styles.main}>
         <div className={styles.cards}>
-          {cards.map((item) => (
-            <Card item={item} key={item.id} />
-          ))}
+          <Card />
         </div>
         <Chart />
       </div>

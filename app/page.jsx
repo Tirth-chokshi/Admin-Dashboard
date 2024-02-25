@@ -1,7 +1,8 @@
 // TODO
+import Login from './login/page'
 const Homepage = () => {
   return (
-    <div>Homepage</div>
+    <div><Login /></div>
   )
 }
 

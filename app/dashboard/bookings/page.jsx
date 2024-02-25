@@ -8,7 +8,7 @@ import { fetchbookings } from "@/app/lib/data";
 const BookingsPage = async ({ searchParams }) => {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
-  const { count, bookings } = await fetchbookings(q, page);
+  const { countBooking, bookings } = await fetchbookings(q, page);
   return (
     <div>
       <div className={styles.container}>
@@ -58,7 +58,7 @@ const BookingsPage = async ({ searchParams }) => {
             ))}
           </tbody>
         </table>
-        <Pagination count={count} />
+        <Pagination count={countBooking} />
       </div>
     </div>
   )

@@ -1,3 +1,6 @@
+// when user hit the add user/booking button incerement the value of total booking by 1
+// if user / booking hit delete button the total value will decremented by 1 
+
 "use server";
 
 import { revalidatePath } from "next/cache";

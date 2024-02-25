@@ -19,7 +19,7 @@
     "react-icons": "4.11.0",
     "recharts": "2.9.0",
     "use-debounce": "9.0.4",
-    "vercel": "^33.5.1"
+    "vercel": "^33.5.2"
   },
   "devDependencies": {
     "eslint": "8",
