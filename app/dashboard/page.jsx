@@ -1,4 +1,3 @@
-import { cards } from "../lib/data";
 import Card from "../ui/dashboard/card/card";
 import Chart from "../ui/dashboard/chart/chart";
 import styles from "../ui/dashboard/dashboard.module.css";
@@ -13,9 +12,9 @@ const Dashboard = () => {
         </div>
         <Chart />
       </div>
-      <div className={styles.side}>
+      {/* <div className={styles.side}>
         <Rightbar />
-      </div>
+      </div> */}
     </div>
   );
 };
