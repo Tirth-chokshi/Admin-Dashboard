@@ -4,7 +4,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { Booking, Car, Product, User } from "./models";
+import { Booking, Car, Product, User,Customer } from "./models";
 import { connectToDB } from "./utils";
 import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";
@@ -213,6 +213,20 @@ export const addBooking = async (formData) =>{
   redirect('/dashboard/bookings')
 }
 
+export const addCustomer = async (formData) =>{
+  try {
+    const { name,address,orgName,number,email,referral,totalBookings} = Object.fromEntries(formData)
+
+    const newCustomer = new Customer({
+      name,address,orgName,number,email,referral,totalBookings
+    })
+    await newCustomer.save()
+
+  } catch (error) {
+    console.log(error)
+    throw new Error("Failed to create Customer")
+  }
+}
 
 export const authenticate = async (prevState, formData) => {
   const { username, password } = Object.fromEntries(formData);

@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
+import { tree } from "next/dist/build/templates/app-page";
 
 const userSchema = new mongoose.Schema(
   {
@@ -113,6 +114,20 @@ const bookingSchema = new mongoose.Schema({
 },{timestamps: true}
 )
 
+const customerSchema = new mongoose.Schema({
+  namme:{
+    type: String,
+    required: true,
+  },
+  address: String,
+  orgName: String,
+  number: Number,
+  email: email,
+  referral: String,
+  totalBookings: Number
+},{timestamps: true})
+
+export const Customer = mongoose.model.Customer || mongoose.model("Customer",customerSchema)
 export const User = mongoose.models.User || mongoose.model("User", userSchema);
 export const Product =
   mongoose.models.Product || mongoose.model("Product", productSchema);
