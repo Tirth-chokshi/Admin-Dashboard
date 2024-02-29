@@ -35,6 +35,7 @@ const userSchema = new mongoose.Schema(
     address: {
       type: String,
     },
+    totalBookings: String
   },
   { timestamps: true }
 );
@@ -114,7 +115,7 @@ const bookingSchema = new mongoose.Schema({
 )
 
 const customerSchema = new mongoose.Schema({
-  namme:{
+  name:{
     type: String,
     required: true,
   },

@@ -32,7 +32,6 @@ export const fetchUser = async (id) => {
 };
 
 export const fetchProducts = async (q, page) => {
-  console.log(q);
   const regex = new RegExp(q, "i");
 
   const ITEM_PER_PAGE = 5;
@@ -85,7 +84,6 @@ export const cards = [
 ];
 
 export const fetchbookings = async (q, page) => {
-  console.log(q);
   const regex = new RegExp(q, "i");
 
   const ITEM_PER_PAGE = 5;

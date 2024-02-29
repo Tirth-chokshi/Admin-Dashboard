@@ -14,6 +14,7 @@ const BookingsPage = async ({ searchParams }) => {
       <div className={styles.container}>
         <div className={styles.top}>
           <Search placeholder="Search for a booking..." />
+          <h3>Total Bookings: {countBooking}</h3>
           <Link href="/dashboard/bookings/add">
             <button className={styles.addButton}>Add New</button>
           </Link>

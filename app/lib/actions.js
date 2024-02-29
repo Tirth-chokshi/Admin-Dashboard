@@ -56,6 +56,7 @@ export const updateUser = async (formData) => {
       address,
       isAdmin,
       isActive,
+      totalBookings
     };
 
     Object.keys(updateFields).forEach(
@@ -64,6 +65,7 @@ export const updateUser = async (formData) => {
     );
 
     await User.findByIdAndUpdate(id, updateFields);
+
   } catch (err) {
     console.log(err);
     throw new Error("Failed to update user!");
@@ -221,11 +223,12 @@ export const addCustomer = async (formData) =>{
       name,address,orgName,number,email,referral,totalBookings
     })
     await newCustomer.save()
-
   } catch (error) {
     console.log(error)
     throw new Error("Failed to create Customer")
   }
+  revalidatePath("dashboard/customers")
+  redirect('dashboard/customers')
 }
 
 export const authenticate = async (prevState, formData) => {
