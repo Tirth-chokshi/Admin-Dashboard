@@ -1,5 +1,4 @@
-import mongoose, { Schema } from "mongoose";
-import { tree } from "next/dist/build/templates/app-page";
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
@@ -122,12 +121,12 @@ const customerSchema = new mongoose.Schema({
   address: String,
   orgName: String,
   number: Number,
-  email: email,
+  email: String,
   referral: String,
   totalBookings: Number
 },{timestamps: true})
 
-export const Customer = mongoose.model.Customer || mongoose.model("Customer",customerSchema)
+export const Customer = mongoose.models.Customer || mongoose.model("Customer",customerSchema)
 export const User = mongoose.models.User || mongoose.model("User", userSchema);
 export const Product =
   mongoose.models.Product || mongoose.model("Product", productSchema);
