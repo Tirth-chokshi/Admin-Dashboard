@@ -56,7 +56,6 @@ export const updateUser = async (formData) => {
       address,
       isAdmin,
       isActive,
-      totalBookings
     };
 
     Object.keys(updateFields).forEach(
@@ -199,11 +198,11 @@ export const addBooking = async (formData) =>{
   try {
     connectToDB()
     
-    const {partyFullName,partyNumber,address,startDate,endDate,startKillometers,endKillometers,totalKillometers,minKillometers,AC,tripRoute,carDetails} = Object.fromEntries(formData)
+    const {partyFullName,partyNumber,address,startDate,endDate,startKillometers,endKillometers,minKillometers,AC,tripRoute,carDetails} = Object.fromEntries(formData)
     
     const newBooking = new Booking(
       {
-        partyFullName,partyNumber,address,startDate,endDate,startKillometers,endKillometers,totalKillometers,minKillometers,AC,tripRoute,carDetails
+        partyFullName,partyNumber,address,startDate,endDate,startKillometers,endKillometers,minKillometers,AC,tripRoute,carDetails
       }
     )
     await newBooking.save()
