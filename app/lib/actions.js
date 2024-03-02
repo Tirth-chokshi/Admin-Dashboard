@@ -4,14 +4,38 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { Booking, Car, Product, User,Customer } from "./models";
+import { Booking, Car, Product, User, Customer } from "./models";
 import { connectToDB } from "./utils";
 import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";
 import { signIn } from "../auth";
+import { NextApiRequest, NextApiResponse } from "next";
+import axios from "axios";
+
+export const fuelPriceCalc = async (req, res) => {
+  let petrolPrice
+  const options = {
+    method: 'GET',
+    url: 'https://daily-petrol-diesel-lpg-cng-fuel-prices-in-india.p.rapidapi.com/v1/fuel-prices/today/india/gujarat',
+    headers: {
+      'X-RapidAPI-Key': process.env.API_KEY,
+      'X-RapidAPI-Host': 'daily-petrol-diesel-lpg-cng-fuel-prices-in-india.p.rapidapi.com'
+    }
+  };
+
+  try {
+    const response = await axios.request(options);
+    // res.send(response.data.fuel.petrol)
+    petrolPrice = response.data.fuel.petrol.retailPrice;
+  } catch (error) {
+    console.error(error);
+  }  
+  return petrolPrice
+}
+
 
 export const addUser = async (formData) => {
-  const { username, email, password, phone, address,img, isAdmin, isActive } =
+  const { username, email, password, phone, address, img, isAdmin, isActive } =
     Object.fromEntries(formData);
 
   try {
@@ -194,15 +218,15 @@ export const deleteProduct = async (formData) => {
   revalidatePath("/dashboard/products");
 };
 
-export const addBooking = async (formData) =>{
+export const addBooking = async (formData) => {
   try {
     connectToDB()
-    
-    const {partyFullName,partyNumber,address,startDate,endDate,startKillometers,endKillometers,minKillometers,AC,tripRoute,carDetails} = Object.fromEntries(formData)
-    
+
+    const { partyFullName, partyNumber, address, startDate, endDate, startKillometers, endKillometers, minKillometers, AC, tripRoute, carDetails } = Object.fromEntries(formData)
+
     const newBooking = new Booking(
       {
-        partyFullName,partyNumber,address,startDate,endDate,startKillometers,endKillometers,minKillometers,AC,tripRoute,carDetails
+        partyFullName, partyNumber, address, startDate, endDate, startKillometers, endKillometers, minKillometers, AC, tripRoute, carDetails
       }
     )
     await newBooking.save()
@@ -214,12 +238,12 @@ export const addBooking = async (formData) =>{
   redirect('/dashboard/bookings')
 }
 
-export const addCustomer = async (formData) =>{
+export const addCustomer = async (formData) => {
   try {
-    const { name,address,orgName,number,email,referral,totalBookings} = Object.fromEntries(formData)
+    const { name, address, orgName, number, email, referral, totalBookings } = Object.fromEntries(formData)
 
     const newCustomer = new Customer({
-      name,address,orgName,number,email,referral,totalBookings
+      name, address, orgName, number, email, referral, totalBookings
     })
     await newCustomer.save()
   } catch (error) {

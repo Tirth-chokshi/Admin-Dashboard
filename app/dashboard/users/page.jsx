@@ -5,17 +5,20 @@ import Search from "@/app/ui/dashboard/search/search";
 import styles from "@/app/ui/dashboard/users/users.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { fuelPriceCalc } from "@/app/lib/actions";
 
 const UsersPage = async ({ searchParams }) => {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
   const { countUser, users } = await fetchUsers(q, page);
+  const data = await fuelPriceCalc()
 
   return (
     <div className={styles.container}>
       <div className={styles.top}>
         <Search placeholder="Search for a user..." />
         <h4>Counter: {countUser}</h4>
+        <h4>Data:{data}</h4>
         <Link href="/dashboard/users/add">
           <button className={styles.addButton}>Add New</button>
         </Link>
