@@ -18,7 +18,7 @@ export const fuelPriceCalc = async (req, res) => {
     method: 'GET',
     url: 'https://daily-petrol-diesel-lpg-cng-fuel-prices-in-india.p.rapidapi.com/v1/fuel-prices/today/india/gujarat',
     headers: {
-      'X-RapidAPI-Key': process.env.API_KEY,
+      'X-RapidAPI-Key': process.env.FUEL_API_KEY,
       'X-RapidAPI-Host': 'daily-petrol-diesel-lpg-cng-fuel-prices-in-india.p.rapidapi.com'
     }
   };
