@@ -80,9 +80,9 @@ const carSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    numPlate:{
+    numPlate: {
       type: String,
-      required:true,
+      required: true,
     },
     img: String,
     model: String,
@@ -90,32 +90,35 @@ const carSchema = new mongoose.Schema(
     color: String,
     price: String,
     desc: String,
-  }, {timestamps: true}
+  }, { timestamps: true }
 )
 const bookingSchema = new mongoose.Schema({
- partyFullName: {
-    type: String,
-  },
-  partyNumber: {
-    type: Number,
-  },
+  partyName: String,
+  mobileNumber: Number,
+  partyOrg: String,
+  stDate: String,
+  endDate: String,
+  stKM: Number,
+  endKM: Number,
+  totalKM: Number,
+  minKM: Number,
+  journeyDetails: String,
   address: String,
-  startDate: String,
-  endDate:String,
-  startKillometers:String,
-  endKillometers:String,
-  totalKilometers:String,
-  minKillometers:String,
-  AC:{
-    type:Boolean,
-  },
-  tripRoute:String,
-  carDetails:String,
-},{timestamps: true}
+  carSendDateTime: String,
+  ACPrice: Number,
+  tollTax: Number,
+  borderTax: Number,
+  driverCharge: Number,
+  driverName: String,
+  advancePayToDriver: Number,
+  paymentMethod: String,
+  paymentStatus: String,
+  addtionalDetails: String,
+}, { timestamps: true }
 )
 
 const customerSchema = new mongoose.Schema({
-  name:{
+  name: {
     type: String,
     required: true,
   },
@@ -125,9 +128,9 @@ const customerSchema = new mongoose.Schema({
   email: String,
   referral: String,
   totalBookings: Number
-},{timestamps: true})
+}, { timestamps: true })
 
-export const Customer = mongoose.models.Customer || mongoose.model("Customer",customerSchema)
+export const Customer = mongoose.models.Customer || mongoose.model("Customer", customerSchema)
 export const User = mongoose.models.User || mongoose.model("User", userSchema);
 export const Product =
   mongoose.models.Product || mongoose.model("Product", productSchema);

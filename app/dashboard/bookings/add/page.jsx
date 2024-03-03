@@ -5,21 +5,42 @@ export default function addBookingsPage() {
   return (
     <div className={styles.container}>
     <form action={addBooking} className={styles.form}>
-      <input type="text" placeholder="Party's Full Name" name="partyFullName"  />
-      <input type="number" placeholder="Mobile Number" name="partyNumber"  />
-      <input type="date" placeholder="Stat Date" name="startDate"  />
+      <input type="text" placeholder="Party's Full Name" name="partyName"  />
+      <input type="number" placeholder="Mobile Number" name="mobileNumber"  />
+      <input type="text" placeholder="Organization Name: " name="partyOrg"/>
+      <label >Starting Date: </label>
+      <input type="date" placeholder="Start Date" name="stDate"  />
+      <label> Ending Date: </label>
       <input type="date" placeholder="End Date" name="endDate"  />
-      <input type="number" placeholder="Starting Killometer" name="startKillometer" 
+      <input type="number" placeholder="Starting Killometer" name="stKM" 
        />
-      <input type="number" placeholder="Ending Killometer" name="endKillometers" 
+      <input type="number" placeholder="Ending Killometer" name="endKM" 
        />
-      <input type="number" placeholder="Total Killometer" name="totalKillometers"  />
-      <input type="number" placeholder="Minimum Killometer" name="minKillometers"  />
-      {/* <select name="AC" id="AC">
-        <option value="general">Choose</option>
-        <option value="on">On</option>
-        <option value="off">Off</option>
-      </select> */}
+      <input type="number" placeholder="Total Killometer" name="totalKM"  />
+      <input type="number" placeholder="Minimum Killometer" name="minKM"  />
+      <input type="text" placeholder="Car send Date and Time" name="carSendDateTime"/>
+      <input type="number" placeholder="AC Price: " name="ACPrice" />
+      <input type="number" placeholder="Toll Tax: " name=""tollTax/>
+      <input type="number" placeholder="Border Tax: " name=""borderTax/>
+      <input type="number" placeholder="Driver Charge: " name=""driverCharge/>
+      <input type="text" placeholder="Driver Full Name" name="driverName"  />
+      <input type="text" placeholder="Advance pay to Driver" name="advancePayToDriver"  />
+      <select name="paymentMethod" id="paymentMethod" >
+        <option value="card">Card</option>
+        <option value="cash">Cash</option>
+        <option value="cheque">Cheque</option>
+      </select>
+      <select name="paymentStatus" id="paymentStatus">
+        <option value="pending">Pending</option>
+        <option value="done">Done</option>
+      </select>
+      <textarea
+        required
+        name="journeyDetails"
+        id="journeyDetails"
+        rows="2"
+        placeholder="journeyDetails"
+      ></textarea>
       <textarea
         required
         name="address"
@@ -29,17 +50,10 @@ export default function addBookingsPage() {
       ></textarea>
       <textarea
         required
-        name="tripRoute"
-        id="triptRoute"
+        name="addtionalDetails"
+        id="addtionalDetails"
         rows="2"
-        placeholder="Tript Route"
-      ></textarea>
-      <textarea
-        required
-        name="carDetails"
-        id="carDetails"
-        rows="2"
-        placeholder="Car Delivery Date , Time: "
+        placeholder="addtionalDetails"
       ></textarea>
       <button type="submit">Submit</button>
     </form>

@@ -222,11 +222,51 @@ export const addBooking = async (formData) => {
   try {
     connectToDB()
 
-    const { partyFullName, partyNumber, address, startDate, endDate, startKillometers, endKillometers, minKillometers, AC, tripRoute, carDetails } = Object.fromEntries(formData)
+    const { partyName,
+      mobileNumber,
+      partyOrg,
+      stDate,
+      endDate,
+      stKM,
+      endKM,
+      totalKM,
+      minKM,
+      journeyDetails,
+      address,
+      carSendDateTime,
+      ACPrice,
+      tollTax,
+      borderTax,
+      driverCharge,
+      driverName,
+      advancePayToDriver,
+      paymentMethod,
+      paymentStatus,
+      addtionalDetails } = Object.fromEntries(formData)
 
     const newBooking = new Booking(
       {
-        partyFullName, partyNumber, address, startDate, endDate, startKillometers, endKillometers, minKillometers, AC, tripRoute, carDetails
+        partyName,
+      mobileNumber,
+      partyOrg,
+      stDate,
+      endDate,
+      stKM,
+      endKM,
+      totalKM,
+      minKM,
+      journeyDetails,
+      address,
+      carSendDateTime,
+      ACPrice,
+      tollTax,
+      borderTax,
+      driverCharge,
+      driverName,
+      advancePayToDriver,
+      paymentMethod,
+      paymentStatus,
+      addtionalDetails
       }
     )
     await newBooking.save()
