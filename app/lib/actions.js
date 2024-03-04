@@ -4,12 +4,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { Booking, Car, Product, User, Customer } from "./models";
+import { Booking, Car, Product, User, Client } from "./models";
 import { connectToDB } from "./utils";
 import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";
 import { signIn } from "../auth";
-import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 
 export const fuelPriceCalc = async (req, res) => {
@@ -223,7 +222,7 @@ export const addBooking = async (formData) => {
     connectToDB()
 
     const { 
-      partyName,mobileNumber,partyOrg,stDate,endDate,stKM,endKM,totalKM,minKM,journeyDetails,address,carSendDateTime,ACPrice,carName,tollTax,borderTax,driverCharge,driverName,advancePayToDriver,paymentMethod,paymentStatus,addtionalDetails
+      partyName,mobileNumber,partyOrg,referral,stDate,endDate,stKM,endKM,totalKM,minKM,journeyDetails,address,carSendDateTime,ACPrice,carName,tollTax,borderTax,driverCharge,driverName,advancePayToDriver,paymentMethod,paymentStatus,addtionalDetails
      } = Object.fromEntries(formData)
      let KMM = ACPrice*totalKM
      let totalMoney = parseInt(tollTax) + parseInt(borderTax) +parseInt(driverCharge)+parseInt(KMM)
@@ -240,6 +239,7 @@ export const addBooking = async (formData) => {
       partyName,
       mobileNumber,
       partyOrg,
+      referral,
       stDate,
       endDate,
       stKM,
@@ -272,20 +272,20 @@ export const addBooking = async (formData) => {
   redirect('/dashboard/bookings')
 }
 
-export const addCustomer = async (formData) => {
+export const addClient = async (formData) => {
   try {
     const { name, address, orgName, number, email, referral, totalBookings } = Object.fromEntries(formData)
 
-    const newCustomer = new Customer({
+    const newClient = new Client({
       name, address, orgName, number, email, referral, totalBookings
     })
-    await newCustomer.save()
+    await newClient.save()
   } catch (error) {
     console.log(error)
-    throw new Error("Failed to create Customer")
+    throw new Error("Failed to create Client")
   }
-  revalidatePath("dashboard/customers")
-  redirect('dashboard/customers')
+  revalidatePath("dashboard/clients")
+  redirect('dashboard/clients')
 }
 
 export const authenticate = async (prevState, formData) => {

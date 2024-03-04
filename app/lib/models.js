@@ -96,6 +96,7 @@ const bookingSchema = new mongoose.Schema({
   partyName: String,
   mobileNumber: Number,
   partyOrg: String,
+  referral:String,
   stDate: String,
   endDate: String,
   stKM: Number,
@@ -119,7 +120,7 @@ const bookingSchema = new mongoose.Schema({
 }, { timestamps: true }
 )
 
-const customerSchema = new mongoose.Schema({
+const clientSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -129,10 +130,9 @@ const customerSchema = new mongoose.Schema({
   number: Number,
   email: String,
   referral: String,
-  totalBookings: Number
 }, { timestamps: true })
 
-export const Customer = mongoose.models.Customer || mongoose.model("Customer", customerSchema)
+export const Client = mongoose.models.Client || mongoose.model("Client", clientSchema)
 export const User = mongoose.models.User || mongoose.model("User", userSchema);
 export const Product =
   mongoose.models.Product || mongoose.model("Product", productSchema);

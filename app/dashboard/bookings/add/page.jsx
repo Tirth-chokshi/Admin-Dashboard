@@ -8,6 +8,7 @@ export default function addBookingsPage() {
       <input type="text" placeholder="Party's Full Name" name="partyName"  />
       <input type="number" placeholder="Mobile Number" name="mobileNumber"  />
       <input type="text" placeholder="Organization Name: " name="partyOrg"/>
+      <input type="text" placeholder="Referral: " name="referral" />
       <label >Starting Date: </label>
       <input type="date" placeholder="Start Date" name="stDate"  />
       <label> Ending Date: </label>

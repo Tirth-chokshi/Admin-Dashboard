@@ -14,7 +14,7 @@ const BookingsPage = async ({ searchParams }) => {
       <div className={styles.container}>
         <div className={styles.top}>
           <Search placeholder="Search for a booking..." />
-          <h3>Total Bookings: {countBooking}</h3>
+          <h4>Total Bookings: {countBooking}</h4>
           <Link href="/dashboard/bookings/add">
             <button className={styles.addButton}>Add New</button>
           </Link>
@@ -41,7 +41,7 @@ const BookingsPage = async ({ searchParams }) => {
                 <td>{booking.totalKM} KM</td>
                 <td>{booking.journeyDetails}</td>
                 <td>{booking.totalMoney}</td>
-                {/* <td>
+                <td>
                   <div className={styles.buttons}>
                     <Link href="">
                       <button className={`${styles.button} ${styles.view}`}>
@@ -55,7 +55,7 @@ const BookingsPage = async ({ searchParams }) => {
                       </button>
                     </form>
                   </div>
-                </td> */}
+                </td>
               </tr>
             ))}
           </tbody>

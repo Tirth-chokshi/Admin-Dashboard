@@ -47,8 +47,8 @@ const menuItems = [
         icon: <TbBrandBooking />,
       },
       {
-        title: "Customers",
-        path: "/dashboard/customers",
+        title: "Clients",
+        path: "/dashboard/clients",
         icon: <IoPeople />,
       }
     ],
