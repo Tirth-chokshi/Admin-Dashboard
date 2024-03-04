@@ -29,7 +29,7 @@ export const fuelPriceCalc = async (req, res) => {
     petrolPrice = response.data.fuel.petrol.retailPrice;
   } catch (error) {
     console.error(error);
-  }  
+  }
   return petrolPrice
 }
 
@@ -222,31 +222,22 @@ export const addBooking = async (formData) => {
   try {
     connectToDB()
 
-    const { partyName,
-      mobileNumber,
-      partyOrg,
-      stDate,
-      endDate,
-      stKM,
-      endKM,
-      totalKM,
-      minKM,
-      journeyDetails,
-      address,
-      carSendDateTime,
-      ACPrice,
-      tollTax,
-      borderTax,
-      driverCharge,
-      driverName,
-      advancePayToDriver,
-      paymentMethod,
-      paymentStatus,
-      addtionalDetails } = Object.fromEntries(formData)
-
+    const { 
+      partyName,mobileNumber,partyOrg,stDate,endDate,stKM,endKM,totalKM,minKM,journeyDetails,address,carSendDateTime,ACPrice,carName,tollTax,borderTax,driverCharge,driverName,advancePayToDriver,paymentMethod,paymentStatus,addtionalDetails
+     } = Object.fromEntries(formData)
+     let KMM = ACPrice*totalKM
+     let totalMoney = parseInt(tollTax) + parseInt(borderTax) +parseInt(driverCharge)+parseInt(KMM)
+     console.log('tollTax:', tollTax);
+     console.log('borderTax:', borderTax);
+     console.log('driverCharge:', driverCharge);
+     console.log('ACPrice:', ACPrice);
+     console.log('totalKM:', totalKM);
+     console.log('KMM',KMM)
+     console.log('totalMoney',totalMoney)
+     
     const newBooking = new Booking(
       {
-        partyName,
+      partyName,
       mobileNumber,
       partyOrg,
       stDate,
@@ -259,6 +250,7 @@ export const addBooking = async (formData) => {
       address,
       carSendDateTime,
       ACPrice,
+      carName,
       tollTax,
       borderTax,
       driverCharge,
@@ -266,13 +258,15 @@ export const addBooking = async (formData) => {
       advancePayToDriver,
       paymentMethod,
       paymentStatus,
-      addtionalDetails
+      addtionalDetails,
+      totalMoney  // Include totalMoney here
       }
     )
+
     await newBooking.save()
   } catch (error) {
     console.log(error)
-    throw new Error("Faild to add Booking!")
+    throw new Error("Failed to add Booking!")
   }
   revalidatePath("/dashboard/bookings");
   redirect('/dashboard/bookings')

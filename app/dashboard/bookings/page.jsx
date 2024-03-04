@@ -26,7 +26,7 @@ const BookingsPage = async ({ searchParams }) => {
               <td>Date</td>
               <td>Total KM</td>
               <td>Trip</td>
-              <td>Car</td>
+              <td>Money</td>
             </tr>
           </thead>
           <tbody>
@@ -34,12 +34,13 @@ const BookingsPage = async ({ searchParams }) => {
               <tr key={booking.id}>
                 <td>
                   <div className={styles.booking}>              
-                    {booking.partyFullName}
+                    {booking.partyName}
                   </div>
                 </td>
-                <td>{booking.startDate}</td>
-                <td>${booking.tripRoute}</td>
-                <td>{booking.carDetails}</td>
+                <td>{booking.carSendDateTime}</td>
+                <td>{booking.totalKM} KM</td>
+                <td>{booking.journeyDetails}</td>
+                <td>{booking.totalMoney}</td>
                 {/* <td>
                   <div className={styles.buttons}>
                     <Link href="">

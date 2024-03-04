@@ -19,10 +19,11 @@ export default function addBookingsPage() {
       <input type="number" placeholder="Total Killometer" name="totalKM"  />
       <input type="number" placeholder="Minimum Killometer" name="minKM"  />
       <input type="text" placeholder="Car send Date and Time" name="carSendDateTime"/>
+      <input type="text" placeholder="Car name" name="carName"/>
       <input type="number" placeholder="AC Price: " name="ACPrice" />
-      <input type="number" placeholder="Toll Tax: " name=""tollTax/>
-      <input type="number" placeholder="Border Tax: " name=""borderTax/>
-      <input type="number" placeholder="Driver Charge: " name=""driverCharge/>
+      <input type="number" placeholder="Toll Tax: " name="tollTax"/>
+      <input type="number" placeholder="Border Tax: " name="borderTax"/>
+      <input type="number" placeholder="Driver Charge: " name="driverCharge"/>
       <input type="text" placeholder="Driver Full Name" name="driverName"  />
       <input type="text" placeholder="Advance pay to Driver" name="advancePayToDriver"  />
       <select name="paymentMethod" id="paymentMethod" >
@@ -42,14 +43,12 @@ export default function addBookingsPage() {
         placeholder="journeyDetails"
       ></textarea>
       <textarea
-        required
         name="address"
         id="address"
         rows="2"
         placeholder="Party's Address"
       ></textarea>
       <textarea
-        required
         name="addtionalDetails"
         id="addtionalDetails"
         rows="2"

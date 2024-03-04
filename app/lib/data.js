@@ -90,8 +90,8 @@ export const fetchbookings = async (q, page) => {
 
   try {
     connectToDB();
-    const countBooking = await Booking.find({ partyFullName: { $regex: regex } }).count();
-    const bookings = await Booking.find({ partyFullName: { $regex: regex } })
+    const countBooking = await Booking.find({ partyName: { $regex: regex } }).count();
+    const bookings = await Booking.find({ partyName: { $regex: regex } })
       .limit(ITEM_PER_PAGE)
       .skip(ITEM_PER_PAGE * (page - 1));
     return { countBooking, bookings };
