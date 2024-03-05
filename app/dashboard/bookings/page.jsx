@@ -43,7 +43,7 @@ const BookingsPage = async ({ searchParams }) => {
                 <td>{booking.totalMoney}</td>
                 <td>
                   <div className={styles.buttons}>
-                    <Link href="">
+                    <Link href={`/dashboard/bookings/${booking.id}`}>
                       <button className={`${styles.button} ${styles.view}`}>
                         View
                       </button>

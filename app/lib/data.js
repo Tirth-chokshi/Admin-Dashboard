@@ -1,4 +1,4 @@
-import { Booking, Client, Product, User } from "./models";
+import { Booking, Car, Client, Product, User } from "./models";
 import { connectToDB } from "./utils";
 
 export const fetchUsers = async (q, page) => {
@@ -78,29 +78,6 @@ export const fetchProduct = async (id) => {
   }
 };
 
-// DUMMY DATA
-
-export const cards = [
-  {
-    id: 1,
-    title: "Total Users",
-    number: 10.928,
-    change: 12,
-  },
-  {
-    id: 2,
-    title: "Stock",
-    number: 8.236,
-    change: -2,
-  },
-  {
-    id: 3,
-    title: "Revenue",
-    number: 6.642,
-    change: 18,
-  },
-];
-
 export const fetchbookings = async (q, page) => {
   const regex = new RegExp(q, "i");
 
@@ -113,6 +90,34 @@ export const fetchbookings = async (q, page) => {
       .limit(ITEM_PER_PAGE)
       .skip(ITEM_PER_PAGE * (page - 1));
     return { countBooking, bookings };
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch bookings!");
+  }
+};
+export const fetchbooking = async(id) =>{
+  try {
+    connectToDB();
+    const booking = await Booking.findById(id);
+    return booking;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch booking!");
+  }
+}
+
+export const fetchCars = async (q, page) => {
+  const regex = new RegExp(q, "i");
+
+  const ITEM_PER_PAGE = 5;
+
+  try {
+    connectToDB();
+    const countCars = await Car.find({ name: { $regex: regex } }).count();
+    const cars = await Car.find({ name: { $regex: regex } })
+      .limit(ITEM_PER_PAGE)
+      .skip(ITEM_PER_PAGE * (page - 1));
+    return { countCars,cars };
   } catch (err) {
     console.log(err);
     throw new Error("Failed to fetch bookings!");

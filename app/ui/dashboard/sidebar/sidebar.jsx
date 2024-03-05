@@ -31,16 +31,16 @@ const menuItems = [
         path: "/dashboard/cars",
         icon: <FaCar />,
       },
-      {
-        title: "Users",
-        path: "/dashboard/users",
-        icon: <MdSupervisedUserCircle />,
-      },
-      {
-        title: "Products",
-        path: "/dashboard/products",
-        icon: <MdShoppingBag />,
-      },
+      // {
+      //   title: "Users",
+      //   path: "/dashboard/users",
+      //   icon: <MdSupervisedUserCircle />,
+      // },
+      // {
+      //   title: "Products",
+      //   path: "/dashboard/products",
+      //   icon: <MdShoppingBag />,
+      // },
       {
         title: "Bookings",
         path: "/dashboard/bookings",
