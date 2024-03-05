@@ -101,6 +101,7 @@ const bookingSchema = new mongoose.Schema({
   endDate: String,
   stKM: Number,
   endKM: Number,
+  fuelPurchase: Number,
   totalKM: Number,
   minKM: Number,
   journeyDetails: String,
@@ -116,7 +117,8 @@ const bookingSchema = new mongoose.Schema({
   paymentMethod: String,
   paymentStatus: String,
   addtionalDetails: String,
-  totalMoney: Number
+  totalMoney: Number,
+  netProfit: Number
 }, { timestamps: true }
 )
 

@@ -1,5 +1,4 @@
-// when user hit the add user/booking button incerement the value of total booking by 1
-// if user / booking hit delete button the total value will decremented by 1 
+
 
 "use server";
 
@@ -11,7 +10,7 @@ import bcrypt from "bcrypt";
 import { signIn } from "../auth";
 import axios from "axios";
 
-export const fuelPriceCalc = async (req, res) => {
+export const fuelPriceCalc = async () => {
   let petrolPrice
   const options = {
     method: 'GET',
@@ -221,45 +220,50 @@ export const addBooking = async (formData) => {
   try {
     connectToDB()
 
-    const { 
-      partyName,mobileNumber,partyOrg,referral,stDate,endDate,stKM,endKM,totalKM,minKM,journeyDetails,address,carSendDateTime,ACPrice,carName,tollTax,borderTax,driverCharge,driverName,advancePayToDriver,paymentMethod,paymentStatus,addtionalDetails
-     } = Object.fromEntries(formData)
-     let KMM = ACPrice*totalKM
-     let totalMoney = parseInt(tollTax) + parseInt(borderTax) +parseInt(driverCharge)+parseInt(KMM)
-     console.log('tollTax:', tollTax);
-     console.log('borderTax:', borderTax);
-     console.log('driverCharge:', driverCharge);
-     console.log('ACPrice:', ACPrice);
-     console.log('totalKM:', totalKM);
-     console.log('KMM',KMM)
-     console.log('totalMoney',totalMoney)
-     
+    const {
+      partyName, mobileNumber, partyOrg, referral, stDate, endDate, fuelPurchase, stKM, endKM, totalKM, minKM, journeyDetails, address, carSendDateTime, ACPrice, carName, tollTax, borderTax, driverCharge, driverName, advancePayToDriver, paymentMethod, paymentStatus, addtionalDetails
+    } = Object.fromEntries(formData)
+    let KMM = ACPrice * totalKM
+    let totalMoney = parseInt(tollTax) + parseInt(borderTax) + parseInt(driverCharge) + parseInt(KMM)
+    let netProfit = parseInt(totalMoney) - parseInt(fuelPurchase)
+    console.log('tollTax:', tollTax);
+    console.log('borderTax:', borderTax);
+    console.log('driverCharge:', driverCharge);
+    console.log('ACPrice:', ACPrice);
+    console.log('totalKM:', totalKM);
+    console.log('KMM', KMM)
+    console.log('Fuel Purchase: ', fuelPurchase)
+    console.log('totalMoney', totalMoney)
+    console.log('Net Profit: ', netProfit)
+
     const newBooking = new Booking(
       {
-      partyName,
-      mobileNumber,
-      partyOrg,
-      referral,
-      stDate,
-      endDate,
-      stKM,
-      endKM,
-      totalKM,
-      minKM,
-      journeyDetails,
-      address,
-      carSendDateTime,
-      ACPrice,
-      carName,
-      tollTax,
-      borderTax,
-      driverCharge,
-      driverName,
-      advancePayToDriver,
-      paymentMethod,
-      paymentStatus,
-      addtionalDetails,
-      totalMoney  // Include totalMoney here
+        partyName,
+        mobileNumber,
+        partyOrg,
+        referral,
+        stDate,
+        endDate,
+        stKM,
+        fuelPurchase,
+        endKM,
+        totalKM,
+        minKM,
+        journeyDetails,
+        address,
+        carSendDateTime,
+        ACPrice,
+        carName,
+        tollTax,
+        borderTax,
+        driverCharge,
+        driverName,
+        advancePayToDriver,
+        paymentMethod,
+        paymentStatus,
+        addtionalDetails,
+        totalMoney,
+        netProfit
       }
     )
 
@@ -289,20 +293,22 @@ export const addClient = async (formData) => {
 }
 
 export const updateBooking = async (formData) => {
-  const { id,partyName,mobileNumber,partyOrg,referral,stDate,endDate,stKM,endKM,totalKM,minKM,journeyDetails,address,carSendDateTime,ACPrice,carName,tollTax,borderTax,driverCharge,driverName,advancePayToDriver,paymentMethod,paymentStatus,addtionalDetails } =
+  const {
+    id, partyName, mobileNumber, partyOrg, referral, stDate, endDate, stKM, endKM, netProfit, fuelPurchase, totalKM, minKM, journeyDetails, address, carSendDateTime, ACPrice, carName, tollTax, borderTax, driverCharge, driverName, advancePayToDriver, paymentMethod, paymentStatus, addtionalDetails } =
     Object.fromEntries(formData);
 
   try {
     connectToDB();
 
     const updateFields = {
-      partyName,mobileNumber,partyOrg,referral,stDate,endDate,stKM,endKM,totalKM,minKM,journeyDetails,address,carSendDateTime,ACPrice,carName,tollTax,borderTax,driverCharge,driverName,advancePayToDriver,paymentMethod,paymentStatus,addtionalDetails
+      partyName, mobileNumber, partyOrg, referral, stDate, endDate, netProfit, fuelPurchase, stKM, endKM, totalKM, minKM, journeyDetails, address, carSendDateTime, ACPrice, carName, tollTax, borderTax, driverCharge, driverName, advancePayToDriver, paymentMethod, paymentStatus, addtionalDetails
     };
 
     Object.keys(updateFields).forEach(
       (key) =>
         (updateFields[key] === "" || undefined) && delete updateFields[key]
     );
+
 
     await Booking.findByIdAndUpdate(id, updateFields);
   } catch (err) {

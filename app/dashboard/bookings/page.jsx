@@ -27,7 +27,8 @@ const BookingsPage = async ({ searchParams }) => {
               <td>Date</td>
               <td>Total KM</td>
               <td>Trip</td>
-              <td>Money</td>
+              <td>Bill</td>
+              <td>Net Profit</td>
             </tr>
           </thead>
           <tbody>
@@ -42,6 +43,7 @@ const BookingsPage = async ({ searchParams }) => {
                 <td>{booking.totalKM} KM</td>
                 <td>{booking.journeyDetails}</td>
                 <td>{booking.totalMoney}</td>
+                <td>{booking.netProfit}</td>
                 <td>
                   <div className={styles.buttons}>
                     <Link href={`/dashboard/bookings/${booking.id}`}>
