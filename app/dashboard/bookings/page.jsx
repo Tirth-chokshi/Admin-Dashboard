@@ -4,6 +4,7 @@ import styles from "@/app/ui/dashboard/products/products.module.css";
 import Search from "@/app/ui/dashboard/search/search";
 import Pagination from "@/app/ui/dashboard/pagination/pagination";
 import { fetchbookings } from "@/app/lib/data";
+import { deleteBooking } from "@/app/lib/actions";
 
 const BookingsPage = async ({ searchParams }) => {
   const q = searchParams?.q || "";
@@ -48,8 +49,8 @@ const BookingsPage = async ({ searchParams }) => {
                         View
                       </button>
                     </Link>
-                    <form>
-                      <input type="hidden" name="id" />
+                    <form action={deleteBooking}>
+                      <input type="hidden" name="id" value={booking.id}  />
                       <button className={`${styles.button} ${styles.delete}`}>
                         Delete
                       </button>

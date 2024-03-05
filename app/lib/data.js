@@ -108,7 +108,6 @@ export const fetchbooking = async(id) =>{
 
 export const fetchCars = async (q, page) => {
   const regex = new RegExp(q, "i");
-
   const ITEM_PER_PAGE = 5;
 
   try {

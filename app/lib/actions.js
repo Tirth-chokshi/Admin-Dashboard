@@ -289,7 +289,7 @@ export const addClient = async (formData) => {
 }
 
 export const updateBooking = async (formData) => {
-  const { partyName,mobileNumber,partyOrg,referral,stDate,endDate,stKM,endKM,totalKM,minKM,journeyDetails,address,carSendDateTime,ACPrice,carName,tollTax,borderTax,driverCharge,driverName,advancePayToDriver,paymentMethod,paymentStatus,addtionalDetails } =
+  const { id,partyName,mobileNumber,partyOrg,referral,stDate,endDate,stKM,endKM,totalKM,minKM,journeyDetails,address,carSendDateTime,ACPrice,carName,tollTax,borderTax,driverCharge,driverName,advancePayToDriver,paymentMethod,paymentStatus,addtionalDetails } =
     Object.fromEntries(formData);
 
   try {
@@ -313,7 +313,19 @@ export const updateBooking = async (formData) => {
   revalidatePath("/dashboard/bookings");
   redirect("/dashboard/bookings");
 };
+export const deleteBooking = async (formData) => {
+  const { id } = Object.fromEntries(formData);
 
+  try {
+    connectToDB();
+    await Booking.findByIdAndDelete(id);
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to delete Booking!");
+  }
+
+  revalidatePath("/dashboard/bookings");
+};
 
 
 

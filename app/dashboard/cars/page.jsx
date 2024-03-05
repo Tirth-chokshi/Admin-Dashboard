@@ -8,7 +8,7 @@ import { fetchCars } from "@/app/lib/data";
 const Carpage = async ({ searchParams }) =>{
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
-  const { countCars , cars } = fetchCars(q,page)
+  const { countCars , cars } = await fetchCars(q,page)
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -33,28 +33,27 @@ const Carpage = async ({ searchParams }) =>{
               <td>
                 <div className={styles.product}>
                   <Image
-                    src={product.img || "/noproduct.jpg"}
+                    src={car.img || "/noproduct.jpg"}
                     alt=""
                     width={40}
                     height={40}
                     className={styles.productImage}
                   />
-                  {product.title}
+                  {car.name}
                 </div>
               </td>
-              <td>{product.desc}</td>
-              <td>${product.price}</td>
-              <td>{product.createdAt?.toString().slice(4, 16)}</td>
-              <td>{product.stock}</td>
+              <td>{car.model}</td>
+              <td>{car.color}</td>
+              <td>{car.numPlate}</td>
               <td>
                 <div className={styles.buttons}>
-                  <Link href={`/dashboard/products/${product.id}`}>
+                  <Link href={`/dashboard/cars/${car.id}`}>
                     <button className={`${styles.button} ${styles.view}`}>
                       View
                     </button>
                   </Link>
-                  <form action={deleteProduct}>
-                    <input type="hidden" name="id" value={product.id} />
+                  <form action="">
+                    <input type="hidden" name="id" value={car.id} />
                     <button className={`${styles.button} ${styles.delete}`}>
                       Delete
                     </button>
