@@ -31,6 +31,11 @@ export const fuelPriceCalc = async () => {
   return petrolPrice
 }
 
+export const calc = async(fuelPurchase) =>{
+  const petrolPrice = await fuelPriceCalc(); // change this line
+  const fuelAmount = parseFloat(fuelPurchase) / parseFloat(petrolPrice);
+  return fuelAmount;
+}
 
 export const addUser = async (formData) => {
   const { username, email, password, phone, address, img, isAdmin, isActive } =
@@ -235,7 +240,8 @@ export const addBooking = async (formData) => {
     console.log('Fuel Purchase: ', fuelPurchase)
     console.log('totalMoney', totalMoney)
     console.log('Net Profit: ', netProfit)
-
+    const fuelAmount = await calc(fuelPurchase); // change this line
+    console.log('Fuel Amount: ', fuelAmount);    
     const newBooking = new Booking(
       {
         partyName,
@@ -263,7 +269,8 @@ export const addBooking = async (formData) => {
         paymentStatus,
         addtionalDetails,
         totalMoney,
-        netProfit
+        netProfit,
+        fuelAmount
       }
     )
 
