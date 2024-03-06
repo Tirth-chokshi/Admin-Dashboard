@@ -10,6 +10,7 @@ function addClientPage() {
         <input type="number" placeholder="Phone numberr" name="number" />
         <input type="text" placeholder="Referral" name="referral" />
         <input type="text" placeholder="Company Name: " name="orgName" />
+        <input type="text" placeholder="Image String: " name="img" />
         <textarea
           name="address"
           id="address"

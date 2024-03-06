@@ -3,7 +3,7 @@ import Pagination from "@/app/ui/dashboard/pagination/pagination";
 import Search from "@/app/ui/dashboard/search/search";
 import styles from "@/app/ui/dashboard/users/users.module.css";
 import Link from "next/link";
-
+import Image from "next/image";
 const ClientPage = async ({ searchParams }) => {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
@@ -32,7 +32,14 @@ const ClientPage = async ({ searchParams }) => {
           {clients.map((client) => (
             <tr key={client.id}>
               <td>
-                <div className={styles.booking}>              
+                <div className={styles.user}>     
+                <Image
+                    src={client.img || "/noavatar.png"}
+                    alt=""
+                    width={30}
+                    height={30}
+                    className={styles.userImage}
+                  />         
                   {client.name}
                 </div>
               </td>

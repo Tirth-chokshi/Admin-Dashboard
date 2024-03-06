@@ -132,6 +132,7 @@ const clientSchema = new mongoose.Schema({
   number: Number,
   email: String,
   referral: String,
+  img:String
 }, { timestamps: true })
 
 export const Client = mongoose.models.Client || mongoose.model("Client", clientSchema)

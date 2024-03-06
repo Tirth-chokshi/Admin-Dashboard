@@ -278,10 +278,10 @@ export const addBooking = async (formData) => {
 
 export const addClient = async (formData) => {
   try {
-    const { name, address, orgName, number, email, referral, totalBookings } = Object.fromEntries(formData)
+    const { name, address, orgName, number, email, referral, totalBookings, img } = Object.fromEntries(formData)
 
     const newClient = new Client({
-      name, address, orgName, number, email, referral, totalBookings
+      name, address, orgName, number, email, referral, totalBookings ,img
     })
     await newClient.save()
   } catch (error) {
