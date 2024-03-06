@@ -110,7 +110,7 @@ export const fetchCars = async (q, page) => {
   const regex = new RegExp(q, "i");
   const ITEM_PER_PAGE = 5;
 
-  try {
+  try { 
     connectToDB();
     const countCars = await Car.find({ name: { $regex: regex } }).count();
     const cars = await Car.find({ name: { $regex: regex } })
@@ -122,3 +122,21 @@ export const fetchCars = async (q, page) => {
     throw new Error("Failed to fetch bookings!");
   }
 };
+
+export const totalRevenue = async () => {
+  try {
+    connectToDB()
+    const result = await Booking.aggregate([
+      {
+        $group: {
+          _id: null,
+          totalRevenue: { $sum: "$netProfit" }
+        }
+      }
+    ])
+    return { countRevenue : result[0].totalRevenue }
+  } catch (error) {
+    console.log(error)
+    throw new Error("Failed to fetch revenue")
+  }
+}

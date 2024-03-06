@@ -1,17 +1,22 @@
 import { MdSupervisedUserCircle } from "react-icons/md";
 import styles from "./card.module.css";
-import { fetchUsers } from "@/app/lib/data";
+// import { fetchUsers } from "@/app/lib/data";
 import { fetchbookings } from "@/app/lib/data";
+import { fetchClients } from "@/app/lib/data";
+import { totalRevenue } from "@/app/lib/data";
+
 const Card = async () => {
-  const { countUser } = await fetchUsers();
+  // const { countUser } = await fetchUsers();
   const {countBooking} = await fetchbookings()
+  const {countClients} = await fetchClients()
+  const {countRevenue} = await totalRevenue()
   return (
     <div className={styles.container}>
       <div className={styles.container}>
         <MdSupervisedUserCircle size={24} />
         <div className={styles.texts}>
           <span className={styles.title}>Total Users</span>
-          <span className={styles.number}>{countUser}</span>
+          <span className={styles.number}>{countClients}</span>
         </div>
       </div>
       <div className={styles.container}>
@@ -25,7 +30,7 @@ const Card = async () => {
         <MdSupervisedUserCircle size={24} />
         <div className={styles.texts}>
           <span className={styles.title}>Revenue</span>
-          <span className={styles.number}>6.642</span>
+          <span className={styles.number}>{countRevenue}</span>
         </div>
       </div>
     </div>
