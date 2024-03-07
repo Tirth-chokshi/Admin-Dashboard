@@ -92,49 +92,51 @@ const carSchema = new mongoose.Schema(
     desc: String,
   }, { timestamps: true }
 )
-const bookingSchema = new mongoose.Schema({
-  partyName: String,
-  mobileNumber: Number,
-  partyOrg: String,
-  referral:String,
-  stDate: String,
-  endDate: String,
-  stKM: Number,
-  endKM: Number,
-  fuelPurchase: Number,
-  totalKM: Number,
-  minKM: Number,
-  journeyDetails: String,
-  address: String,
-  carName:String,
-  carSendDateTime: String,
-  ACPrice: Number,
-  tollTax: Number,
-  borderTax: Number,
-  driverCharge: Number,
-  driverName: String,
-  advancePayToDriver: Number,
-  paymentMethod: String,
-  paymentStatus: String,
-  addtionalDetails: String,
-  totalMoney: Number,
-  netProfit: Number,
-  fuelAmount: String
-}, { timestamps: true }
-)
+const bookingSchema = new mongoose.Schema(
+  {
+    partyName: String,
+    mobileNumber: Number,
+    partyOrg: String,
+    referral: String,
+    stDate: String,
+    endDate: String,
+    stKM: Number,
+    endKM: Number,
+    fuelPurchase: Number,
+    totalKM: Number,
+    minKM: Number,
+    journeyDetails: String,
+    address: String,
+    carName: String,
+    carSendDateTime: String,
+    ACPrice: Number,
+    tollTax: Number,
+    borderTax: Number,
+    driverCharge: Number,
+    driverName: String,
+    advancePayToDriver: Number,
+    paymentMethod: String,
+    paymentStatus: String,
+    addtionalDetails: String,
+    totalMoney: Number,
+    netProfit: Number,
+    fuelAmount: String,
+    fuelType:String
+  }, { timestamps: true })
 
-const clientSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  address: String,
-  orgName: String,
-  number: Number,
-  email: String,
-  referral: String,
-  img:String
-}, { timestamps: true })
+const clientSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    address: String,
+    orgName: String,
+    number: Number,
+    email: String,
+    referral: String,
+    img: String
+  }, { timestamps: true })
 
 export const Client = mongoose.models.Client || mongoose.model("Client", clientSchema)
 export const User = mongoose.models.User || mongoose.model("User", userSchema);

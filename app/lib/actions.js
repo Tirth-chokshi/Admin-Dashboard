@@ -10,8 +10,8 @@ import bcrypt from "bcrypt";
 import { signIn } from "../auth";
 import axios from "axios";
 
-export const fuelPriceCalc = async () => {
-  let petrolPrice
+export const fuelPriceCalc = async (fuelType) => {
+  let fuelPrice
   const options = {
     method: 'GET',
     url: 'https://daily-petrol-diesel-lpg-cng-fuel-prices-in-india.p.rapidapi.com/v1/fuel-prices/today/india/gujarat',
@@ -23,17 +23,24 @@ export const fuelPriceCalc = async () => {
 
   try {
     const response = await axios.request(options);
-    // res.send(response.data.fuel.petrol)
-    petrolPrice = response.data.fuel.petrol.retailPrice;
+
+    if (fuelType === 'CNG') {
+      fuelPrice = response.data.fuel.cng.retailPrice;
+    } else if (fuelType === 'DIESEL') {
+      fuelPrice = response.data.fuel.diesel.retailPrice;
+    }
+    else if(fuelType === 'PETROL'){
+      fuelPrice = response.data.petrol.retailPrice
+    }
   } catch (error) {
     console.error(error);
   }
-  return petrolPrice
+  return fuelPrice
 }
 
-export const calc = async(fuelPurchase) =>{
-  const petrolPrice = await fuelPriceCalc(); // change this line
-  const fuelAmount = parseFloat(fuelPurchase) / parseFloat(petrolPrice);
+export const calc = async (fuelType,fuelPurchase) => {
+  const fuelPrice = await fuelPriceCalc(fuelType); // change this line
+  const fuelAmount = parseFloat(fuelPurchase) / parseFloat(fuelPrice);
   return fuelAmount;
 }
 
@@ -226,7 +233,7 @@ export const addBooking = async (formData) => {
     connectToDB()
 
     const {
-      partyName, mobileNumber, partyOrg, referral, stDate, endDate, fuelPurchase, stKM, endKM, totalKM, minKM, journeyDetails, address, carSendDateTime, ACPrice, carName, tollTax, borderTax, driverCharge, driverName, advancePayToDriver, paymentMethod, paymentStatus, addtionalDetails
+      partyName, mobileNumber, partyOrg, referral, stDate, endDate,fuelType, fuelPurchase, stKM, endKM, totalKM, minKM, journeyDetails, address, carSendDateTime, ACPrice, carName, tollTax, borderTax, driverCharge, driverName, advancePayToDriver, paymentMethod, paymentStatus, addtionalDetails
     } = Object.fromEntries(formData)
     let KMM = ACPrice * totalKM
     let totalMoney = parseInt(tollTax) + parseInt(borderTax) + parseInt(driverCharge) + parseInt(KMM)
@@ -240,8 +247,9 @@ export const addBooking = async (formData) => {
     console.log('Fuel Purchase: ', fuelPurchase)
     console.log('totalMoney', totalMoney)
     console.log('Net Profit: ', netProfit)
-    const fuelAmount = await calc(fuelPurchase); // change this line
-    console.log('Fuel Amount: ', fuelAmount);    
+    console.log('Fuel Type: ', fuelType)
+    const fuelAmount = await calc(fuelType,fuelPurchase); // change this line
+    console.log('Fuel Amount: ', fuelAmount);
     const newBooking = new Booking(
       {
         partyName,
@@ -270,6 +278,7 @@ export const addBooking = async (formData) => {
         addtionalDetails,
         totalMoney,
         netProfit,
+        fuelType,
         fuelAmount
       }
     )
@@ -288,7 +297,7 @@ export const addClient = async (formData) => {
     const { name, address, orgName, number, email, referral, totalBookings, img } = Object.fromEntries(formData)
 
     const newClient = new Client({
-      name, address, orgName, number, email, referral, totalBookings ,img
+      name, address, orgName, number, email, referral, totalBookings, img
     })
     await newClient.save()
   } catch (error) {
