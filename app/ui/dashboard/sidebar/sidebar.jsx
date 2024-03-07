@@ -16,6 +16,7 @@ import { FaCar } from "react-icons/fa";
 import { IoPeople } from "react-icons/io5";
 import { TbBrandBooking } from "react-icons/tb";
 import { auth, signOut } from "@/app/auth";
+import { RiSteering2Fill } from "react-icons/ri";
 
 const menuItems = [
   {
@@ -67,9 +68,9 @@ const menuItems = [
         icon: <MdAnalytics />,
       },
       {
-        title: "Teams",
-        path: "/dashboard/teams",
-        icon: <MdPeople />,
+        title: "Drivers",
+        path: "/dashboard/drivers",
+        icon: <RiSteering2Fill />
       },
     ],
   },

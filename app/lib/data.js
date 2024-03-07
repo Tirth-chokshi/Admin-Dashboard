@@ -140,3 +140,29 @@ export const totalRevenue = async () => {
     throw new Error("Failed to fetch revenue")
   }
 }
+
+export const fetchRefrrel = async () =>{
+  try {
+    await connectToDB();
+
+    const referralCounts = await Booking.aggregate([
+      {
+        $group: {
+          _id: "$referral",
+          count: { $sum: 1 }
+        }
+      }
+    ]);
+
+    const formattedCounts = {};
+    referralCounts.forEach(referral => {
+      formattedCounts[referral._id] = referral.count;
+    });
+    console.log(formattedCounts)
+    return formattedCounts;
+
+  } catch (error) {
+    console.log(error)
+    throw new Error("Failed to fetch Refrrels")
+  }
+}

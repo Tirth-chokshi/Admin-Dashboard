@@ -8,7 +8,14 @@ export default function addBookingsPage() {
       <input type="text" placeholder="Party's Full Name" name="partyName"  />
       <input type="number" placeholder="Mobile Number" name="mobileNumber"  />
       <input type="text" placeholder="Organization Name: " name="partyOrg"/>
-      <input type="text" placeholder="Referral: " name="referral" />
+      <label htmlFor="">Referral: </label>
+      <select name="referral" id="referral">
+        <option value="Varn Travels">Varun Travels</option>
+        <option value="Madhav Travels">Madhav Travels</option>
+        <option value="Chetan Travels">Chetan Travels</option>
+        <option value="Google">Google</option>
+        <option value="Self">Self</option>
+      </select>
       <label >Starting Date: </label>
       <input type="date" placeholder="Start Date" name="stDate"  />
       <label> Ending Date: </label>
@@ -27,6 +34,7 @@ export default function addBookingsPage() {
       <input type="text" placeholder="Driver Full Name" name="driverName"  />
       <input type="number" placeholder="Driver Charge: " name="driverCharge"/>
       <select name="fuelType" id="fuelType">
+        <option value="">Select Fuel Type</option>
         <option value="CNG">CNG</option>
         <option value="PETROL">PETROL</option>
         <option value="DIESEL">DIESEL</option>
@@ -34,8 +42,10 @@ export default function addBookingsPage() {
       <input type="number" placeholder="How much money for fuel" name="fuelPurchase"/>
       <input type="text" placeholder="Advance pay to Driver" name="advancePayToDriver"  />
       <select name="paymentMethod" id="paymentMethod" >
+        <option value="">Select Payment Method</option>
         <option value="card">Card</option>
         <option value="cash">Cash</option>
+        <option value="upi">UPI</option>
         <option value="cheque">Cheque</option>
       </select>
       <select name="paymentStatus" id="paymentStatus">
