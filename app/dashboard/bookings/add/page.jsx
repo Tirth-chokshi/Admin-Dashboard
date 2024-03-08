@@ -15,6 +15,7 @@ export default function addBookingsPage() {
         <option value="Chetan Travels">Chetan Travels</option>
         <option value="Google">Google</option>
         <option value="Self">Self</option>
+        <option value="Others">Others</option>
       </select>
       <label >Starting Date: </label>
       <input type="date" placeholder="Start Date" name="stDate"  />

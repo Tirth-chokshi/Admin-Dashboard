@@ -5,20 +5,17 @@ import Search from "@/app/ui/dashboard/search/search";
 import Pagination from "@/app/ui/dashboard/pagination/pagination";
 import { fetchbookings } from "@/app/lib/data";
 import { deleteBooking } from "@/app/lib/actions";
-import { fetchRefrrel } from "@/app/lib/data";
 
 const BookingsPage = async ({ searchParams }) => {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
   const { countBooking, bookings } = await fetchbookings(q, page);
-  const formattedCounts = await fetchRefrrel()
   return (
     <div>
       <div className={styles.container}>
         <div className={styles.top}>
           <Search placeholder="Search for a booking..." />
           <h4>Total Bookings: {countBooking}</h4>
-          
           <Link href="/dashboard/bookings/add">
             <button className={styles.addButton}>Add New</button>
           </Link>

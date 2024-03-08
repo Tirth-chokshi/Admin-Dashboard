@@ -141,28 +141,25 @@ export const totalRevenue = async () => {
   }
 }
 
-export const fetchRefrrel = async () =>{
-  try {
-    await connectToDB();
+export const fetchReferral = async () => {
+  const selfRegex = new RegExp("Self", "i")
+  const googlefRegex = new RegExp("Google", "i")
+  const varunTRegex = new RegExp("Varn Travels", "i")
+  const chetanTRegex = new RegExp("Madhav Travels", "i")
+  const madhavTRegex = new RegExp("Chetan Travels", "i")
+  const othersRegex = new RegExp("Others", "i")
+  try { 
+    connectToDB();
+    const selfReferrals = await Booking.find({ referral: { $regex: selfRegex } }).count()
+    const googleReferrals = await Booking.find({ referral: { $regex: googlefRegex}}).count()
+    const varunTReferrals = await Booking.find({ referral:{ $regex: varunTRegex}}).count()
+    const chetanTReffarls = await Booking.find({ referral:{ $regex: chetanTRegex}}).count()
+    const madhavTReffarls = await Booking.find({ referral:{ $regex: madhavTRegex}}).count()
+    const othersReffarls = await Booking.find({ referral:{ $regex: othersRegex}}).count()
 
-    const referralCounts = await Booking.aggregate([
-      {
-        $group: {
-          _id: "$referral",
-          count: { $sum: 1 }
-        }
-      }
-    ]);
-
-    const formattedCounts = {};
-    referralCounts.forEach(referral => {
-      formattedCounts[referral._id] = referral.count;
-    });
-    console.log(formattedCounts)
-    return formattedCounts;
-
-  } catch (error) {
-    console.log(error)
-    throw new Error("Failed to fetch Refrrels")
+    return {selfReferrals,googleReferrals,varunTReferrals,chetanTReffarls,madhavTReffarls,othersReffarls} ;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch reffrals!");
   }
-}
+};
