@@ -68,7 +68,7 @@ const data1 = [
   { name: 'Group C', value: 300 },
   { name: 'Group D', value: 200 },
 ];
-const Chart = () => {
+const Chart = ({ data69 }) => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Monthly Recap</h2>
@@ -92,14 +92,14 @@ const Chart = () => {
           <Line type="monotone" dataKey="Profit" stroke="#82ca9d" strokeDasharray="3 4 5 2" />
         </LineChart>
       </ResponsiveContainer>
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height="100%" className={styles.container}>
          {/*<PieChart width={400} height={400}>
           <Pie data={data01} dataKey="value" cx="50%" cy="50%"  innerRadius={40} outerRadius={60} fill="#8884d8"/>
           <Pie data={data02} dataKey="value" cx="50%" cy="50%" innerRadius={70} outerRadius={90} fill="#82ca9d" label />
         </PieChart> */}
         <PieChart width={800} height={400}>
         <Pie
-          data={data1}
+          data={data69}
           cx={120}
           cy={200}
           innerRadius={60}
@@ -114,7 +114,7 @@ const Chart = () => {
           ))}
         </Pie>
         <Pie
-          data={data1}
+          data={data69}
           cx={420}
           cy={200}
           startAngle={180}
