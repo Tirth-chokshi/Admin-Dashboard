@@ -233,7 +233,7 @@ export const addBooking = async (formData) => {
     connectToDB()
 
     const {
-      partyName, mobileNumber, partyOrg, referral, stDate, endDate,fuelType, fuelPurchase, stKM, endKM, totalKM, minKM, journeyDetails, address, carSendDateTime, ACPrice, carName, tollTax, borderTax, driverCharge, driverName, advancePayToDriver, paymentMethod, paymentStatus, addtionalDetails
+      partyName, mobileNumber, partyOrg, referral, stDate, endDate,fuelType, fuelPurchase, stKM, endKM, commission,totalKM, minKM, journeyDetails, address, carSendDateTime, ACPrice, carName, tollTax, borderTax, driverCharge, driverName, advancePayToDriver, paymentMethod, paymentStatus, addtionalDetails
     } = Object.fromEntries(formData)
     let KMM = ACPrice * totalKM
     let totalMoney = parseInt(tollTax) + parseInt(borderTax) + parseInt(driverCharge) + parseInt(KMM)
@@ -261,6 +261,7 @@ export const addBooking = async (formData) => {
         stKM,
         fuelPurchase,
         endKM,
+        commission,
         totalKM,
         minKM,
         journeyDetails,

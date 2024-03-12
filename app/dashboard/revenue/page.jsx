@@ -1,5 +1,4 @@
 import { fetchReferral } from "@/app/lib/data";
-import styles from '@/app/ui/dashboard/dashboard.module.css'
 import Chart2 from "../../ui/dashboard/chart/chart2";
 
 const RevenuePage =  async () =>{
@@ -14,7 +13,6 @@ const RevenuePage =  async () =>{
       { name: 'Group G', value: othersReffarls },
     ];
   return (
-    
     <div>
         <Chart2 data69={data2} />
     </div>

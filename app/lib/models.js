@@ -111,6 +111,7 @@ const bookingSchema = new mongoose.Schema(
     carSendDateTime: String,
     ACPrice: Number,
     tollTax: Number,
+    commission: Number,
     borderTax: Number,
     driverCharge: Number,
     driverName: String,

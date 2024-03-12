@@ -32,6 +32,7 @@ export default function addBookingsPage() {
       <input type="number" placeholder="AC Price: " name="ACPrice" />
       <input type="number" placeholder="Toll Tax: " name="tollTax"/>
       <input type="number" placeholder="Border Tax: " name="borderTax"/>
+      <input type="number" placeholder="commission: " name="commission" />
       <input type="text" placeholder="Driver Full Name" name="driverName"  />
       <input type="number" placeholder="Driver Charge: " name="driverCharge"/>
       <select name="fuelType" id="fuelType">
@@ -40,7 +41,7 @@ export default function addBookingsPage() {
         <option value="PETROL">PETROL</option>
         <option value="DIESEL">DIESEL</option>
       </select>
-      <input type="number" placeholder="How much money for fuel" name="fuelPurchase"/>
+      <input type="number" placeholder="How much money   for fuel" name="fuelPurchase"/>
       <input type="text" placeholder="Advance pay to Driver" name="advancePayToDriver"  />
       <select name="paymentMethod" id="paymentMethod" >
         <option value="">Select Payment Method</option>

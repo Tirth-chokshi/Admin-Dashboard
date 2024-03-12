@@ -35,6 +35,8 @@ const SingleBookingPage = async ({ params }) => {
         <input type="number" placeholder={booking.ACPrice} name="ACPrice" />
         <label >Toll-Tax: </label>
         <input type="number" placeholder={booking.tollTax} name="tollTax" />
+        <label htmlFor="">Commission: </label>
+        <input type="number" placeholder={booking.commission} name="commission" />
         <label >Border-Tax</label>
         <input type="number" placeholder={booking.borderTax} name="borderTax" />
         <label >Drivers Name: </label>
@@ -50,16 +52,9 @@ const SingleBookingPage = async ({ params }) => {
         <label >Billed Amount: </label>
         <input type="number" placeholder={booking.totalMoney} name="totalMoney" />
         <label >Payment Method: </label>
-        <select name="paymentMethod" id="paymentMethod" >
-          <option value="card">Card</option>
-          <option value="cash">Cash</option>
-          <option value="cheque">Cheque</option>
-        </select>
+        <input type="text" name="paymentMethod" id="paymentMethod" placeholder={booking.paymentMethod} />
         <label >Payment Status: </label>
-        <select name="paymentStatus" id="paymentStatus">
-          <option value="pending">Pending</option>
-          <option value="done">Done</option>
-        </select>
+        <input type="text" name="paymentStatus" id="paymentStatus" placeholder={booking.paymentStatus} />
         <label >Journey Details: </label>
         <textarea
           required
