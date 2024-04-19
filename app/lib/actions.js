@@ -283,7 +283,6 @@ export const addBooking = async (formData) => {
         fuelAmount
       }
     )
-
     await newBooking.save()
   } catch (error) {
     console.log(error)
@@ -300,7 +299,7 @@ export const addClient = async (formData) => {
     const newClient = new Client({
       name, address, orgName, number, email, referral, totalBookings, img
     })
-    await newClient.save()
+    await newClient.save()  
   } catch (error) {
     console.log(error)
     throw new Error("Failed to create Client")
