@@ -31,8 +31,6 @@
     "react-icons": "4.11.0",
     "recharts": "^2.12.2",
     "sharp": "^0.33.2",
-    "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7",
     "use-debounce": "9.0.4",
     "vercel": "^33.5.2"
   },
