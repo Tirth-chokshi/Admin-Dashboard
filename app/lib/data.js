@@ -112,8 +112,8 @@ export const fetchCars = async (q, page) => {
 
   try { 
     connectToDB();
-    const cars = await Car.find({ name: { $regex: regex } })
     const countCars = await Car.find({ name: { $regex: regex } }).count();
+    const cars = await Car.find({ name: { $regex: regex } })
       .limit(ITEM_PER_PAGE)
       .skip(ITEM_PER_PAGE * (page - 1));
     return {countCars,cars };
