@@ -116,7 +116,7 @@ export const fetchCars = async (q, page) => {
     const cars = await Car.find({ name: { $regex: regex } })
       .limit(ITEM_PER_PAGE)
       .skip(ITEM_PER_PAGE * (page - 1));
-    return { countCars,cars };
+    return {countCars,cars };
   } catch (err) {
     console.log(err);
     throw new Error("Failed to fetch bookings!");

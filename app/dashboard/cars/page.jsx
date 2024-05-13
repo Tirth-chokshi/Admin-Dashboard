@@ -8,12 +8,11 @@ import { fetchCars } from "@/app/lib/data";
 const Carpage = async ({ searchParams }) =>{
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
-  const { countCars , cars } = await fetchCars(q,page)
+  const { cars } = await fetchCars(q,page)
   return (
     <div className={styles.container}>
       <div className={styles.top}>
         <Search placeholder="Search for a car..." />
-        <h4>Total Cars: {countCars} </h4>
         <Link href="/dashboard/cars/add">
           <button className={styles.addButton}>Add New</button>
         </Link>
