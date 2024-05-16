@@ -8,7 +8,7 @@ import { fetchCars } from "@/app/lib/data";
 const Carpage = async ({ searchParams }) =>{
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
-  const { cars } = await fetchCars(q,page)
+  const { cars,countCars } = await fetchCars(q,page)
   return (
     <div className={styles.container}>
       <div className={styles.top}>
