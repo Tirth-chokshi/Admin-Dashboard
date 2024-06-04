@@ -122,7 +122,7 @@ export const fetchCars = async (q, page) => {
     throw new Error("Failed to fetch bookings!");
   }
 };
-
+// mongoDB aggregate
 export const totalRevenue = async () => {
   try {
     connectToDB()
